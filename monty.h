@@ -1,8 +1,5 @@
 #ifndef _MONTY_H_
 #define _MONTY_H_
-#define _GNU_SOURCE
-
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>
@@ -42,30 +39,7 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-/**
- * struct global - Use in many files
- * @num: Stack numbers.
- * @buff: Buffer.
- * @file: File to open.
- */
-typedef struct head
-{
-	
-	char *op;
-	FILE *opc;
-	
-} head;
-extern head gb;
-
-void op_free(stack_t *head);
-void op_fun(stack_t **stack, unsigned int line_number, char *opcd);
-void push(stack_t **stack,  unsigned int line_number);
+void execute_opcodes(FILE *file);
 void pall(stack_t **stack, unsigned int line_number);
-void pint(stack_t **stack, unsigned int line_number);
-void pop(stack_t **stack, unsigned int line_number);
-void swap(stack_t **stack, unsigned int line_number);
-void add(stack_t **stack, unsigned int line_number);
-void nop(stack_t **stack, unsigned int line_number);
-
+void push(stack_t **stack, int value, unsigned int line_number);
 #endif /* _MONTY_H_ */
-
