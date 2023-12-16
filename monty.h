@@ -51,6 +51,7 @@ void open_file(char *file_name, stack_t **stack);
 void read_file(stack_t **stack,  FILE *file);
 void op_fun(char *opc, stack_t **stack, unsigned int line_number);
 int check_str(char *str);
+void _pint(stack_t **stack, unsigned int line_number);
 
 
 #endif

@@ -14,6 +14,7 @@ void op_fun(char *opc, stack_t **stack, unsigned int line_number)
 	instruction_t line_op[] = {
 		{"push", _push},
 		{"pall", _pall},
+		{"pint", _pint},
 		{NULL, NULL}
 	};
 	for (i = 0; line_op[i].opcode != NULL; i++)
