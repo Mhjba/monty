@@ -38,15 +38,5 @@ typedef struct instruction_s
 } instruction_t;
 
 typedef struct global
-{
-	char *num;
-	char *buff;
-	FILE *file;
-} global;
-extern global gl;
 
-void op_cmd(stack_t **h, unsigned int cnt, char *cmd);
-void _push(stack_t **h,  unsigned int cnt);
-void ultrafree(stack_t *h);
-void _pall(stack_t **h, unsigned int cnt);
 #endif
