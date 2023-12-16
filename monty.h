@@ -36,4 +36,12 @@ typedef struct instruction_s
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
+
+void push(stack_t **stack, unsigned int line);
+void pall(stack_t **stack, unsigned int line);
+void processfile(FILE *file);
+void get_opcode_func(char *opcode, stack_t **stack, unsigned int line, FILE *f);
+int check_str(char *str);
+void free_stack(stack_t **head);
+
 #endif
