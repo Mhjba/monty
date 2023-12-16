@@ -37,11 +37,16 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-void push(stack_t **stack, unsigned int line);
-void pall(stack_t **stack, unsigned int line);
-void processfile(FILE *file);
-void get_opcode_func(char *opcode, stack_t **stack, unsigned int line, FILE *f);
-int check_str(char *str);
-void free_stack(stack_t **head);
+typedef struct global
+{
+	char *num;
+	char *buff;
+	FILE *file;
+} global;
+extern global gl;
 
+void op_cmd(stack_t **h, unsigned int cnt, char *cmd);
+void _push(stack_t **h,  unsigned int cnt);
+void ultrafree(stack_t *h);
+void _pall(stack_t **h, unsigned int cnt);
 #endif
