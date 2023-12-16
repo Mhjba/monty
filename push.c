@@ -1,38 +1,57 @@
 #include "monty.h"
 
 /**
- * _push - pushes a node to the top of stack
- * @stack: Pointer of the stack.
- * @line_number: line number
+ * _push - pushes an element to the stack
+ * @stack: pointer of the stack
+ * @line_number: line number.
  * Return: void.
  */
-
 void _push(stack_t **stack, unsigned int line_number)
 {
+	char *str;
 	stack_t *new;
+	int node;
 
 	new = malloc(sizeof(stack_t));
-	if (!new)
+	str = strtok(NULL, "\n\t\r ");
+	new = *stack;
+	if (str == NULL || check_str(str) == -1)
+	{
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	if (new == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
-	new->n = line_number;
+	node = atoi(str);
+	new->n = node;
 	new->prev = NULL;
-		if (*stack)
-		{
-			new->next = *stack;
-			(*stack)->prev = new;
-		}
-		else
-		{
-			new->next = NULL;
-		}
+	new->next = *stack;
+	if (*stack != NULL)
+		(*stack)->prev = new;
 	*stack = new;
 }
 
 /**
- * _pall - Prints all the elements, starting from the top of the stack.
+ * check_str - check if a string is an integer.
+ * @str: string.
+ * Return: 0.
+*/
+int check_str(char *str)
+{
+	while (*str)
+	{
+		if (!isdigit(*str))
+			return (-1);
+		str++;
+	}
+	return (0);
+}
+
+/**
+ * _pall - Prints all the elements of the stack.
  * @stack: Pointer of the stack.
  * @line_number: line_number.
  *
@@ -42,11 +61,10 @@ void _pall(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new = *stack;
 
-	(void)(line_number);
+	(void)line_number;
 	while (new != NULL)
 	{
-		new = new->next;
 		printf("%d\n", new->n);
+		new = new->next;
 	}
 }
-

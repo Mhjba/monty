@@ -25,7 +25,6 @@ void op_fun(char *opc, stack_t **stack, unsigned int line_number)
 		}
 	}
 	fprintf(stderr, "L%d: unknown instruction %s\n", line_number, opc);
-	free_all(*stack);
 	free(opc);
 	exit(EXIT_FAILURE);
 }
