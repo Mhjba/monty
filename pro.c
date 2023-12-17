@@ -10,7 +10,7 @@ void processfile(FILE *file)
 	unsigned int line_number = 0;
 	char *line = NULL;
 	char *opcode = NULL;
-	/*char *arg = NULL;*/
+	char *arg = NULL;
 	size_t size = 0;
 	stack_t *stack = NULL;
 
@@ -22,11 +22,19 @@ void processfile(FILE *file)
 			continue;
 		if (strcmp(opcode, "push") == 0)
 		{
-			fprintf(stderr, "L%d: usage: push integer\n", line_number);
-			free(opcode);
-			free_stack(&stack);
-			fclose(file);
-			exit(EXIT_FAILURE);
+			arg = strtok(NULL, " \n");
+			if (arg != NULL && valid_arg(arg))
+			{
+				push(&stack, line_number, arg);
+			}
+			else
+			{
+				fprintf(stderr, "L%d: usage: push integer\n", line_number);
+				free(opcode);
+				free_stack(&stack);
+				fclose(file);
+				exit(EXIT_FAILURE);
+			}
 		}
 		else
 		{
