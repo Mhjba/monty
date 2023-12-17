@@ -71,7 +71,6 @@ int file_reader(char *filename, stack_t **stack)
 void stack_init(stack_t **head)
 {
 	*head = NULL;
-	stack_t **top = head;
 
 }
 
