@@ -5,10 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdbool.h>
-#include <ctype.h>
-#include <errno.h>
-#include <limits.h>
+
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -38,27 +35,5 @@ typedef struct instruction_s
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
-
-/**
- * struct global_vars - globally useful variables, all rolled into one
- * @top: double pointer to top of stack
- * @ops: double pointer to an instruction struct
-**/
-typedef struct global_vars
-{
-	stack_t **top;
-	instruction_t **ops;
-} glob_vars;
-
-extern glob_vars globv;
-
-
-
-void stack_init(stack_t **head);
-void free_all(void);
-int file_reader(char *filename, stack_t **stack);
-void get_po(stack_t **stack, char *op, unsigned int line_number);
-void _push(stack_t **stack, unsigned int line_number);
-void _pall(stack_t **stack, unsigned int line_number);
 
 #endif
