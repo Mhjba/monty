@@ -39,6 +39,18 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+/**
+ * struct global_vars - globally useful variables, all rolled into one
+ * @top: double pointer to top of stack
+ * @ops: double pointer to an instruction struct
+**/
+typedef struct global_vars
+{
+	stack_t **top;
+	instruction_t **ops;
+} glob_vars;
+
+extern glob_vars globv;
 
 
 void stack_init(stack_t **head);

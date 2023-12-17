@@ -1,6 +1,6 @@
 #include "monty.h"
 
-
+glob_vars globv;
 
 
 /**
@@ -73,7 +73,7 @@ int file_reader(char *filename, stack_t **stack)
 void stack_init(stack_t **head)
 {
 	*head = NULL;
-
+	globv.top = head;
 }
 
 /**
@@ -85,7 +85,7 @@ void free_all(void)
 {
 	stack_t *tmp1, *tmp2, **top = NULL;
 
-	tmp1 = *(top);
+	tmp1 = *(globv.top);
 	while (tmp1 != NULL)
 	{
 		tmp2 = tmp1->next;
