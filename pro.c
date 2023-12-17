@@ -60,12 +60,9 @@ void processfile(FILE *file)
 void get_opcode_func(char *opcode, stack_t **stack, unsigned int line, FILE *f)
 {
 	int i = 0;
-	instruction_t opcodes[] = {{"pall", pall},
-				   {"pint", pint}, {"pop", pop},
-				   {"swap", swap}, {"add", add},
-				   {"nop", nop}, {"sub", subop},
-				   {"mul", mulop}, {"div", divop},
-				   {"mod", modop}, {NULL, NULL}};
+	instruction_t opcodes[] = {
+				   {"pall", pall},
+				   {NULL, NULL}};
 
 	/*(void)stack;*/
 	/*(void)line;*/
