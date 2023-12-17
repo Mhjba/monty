@@ -4,16 +4,18 @@
  * push - pushes a node to the top of stack
  * @stack: pointer to the head node pointer of stack
  * @line: the line number
- * @arg: arguments
  * Return: Nothing.
  */
 
-void push(stack_t **stack, unsigned int line, char *arg)
+void push(stack_t **stack, unsigned int line)
 {
 	stack_t *node = NULL;
+	char *arg;
 
-
-	if (stack == NULL)
+	arg = strtok(NULL, " \n");
+	/*if (arg != NULL && valid_arg(arg))*/
+	/*if (stack == NULL)*/
+	if (arg == NULL || valid_arg(arg) == -1)
 	{
 		fprintf(stderr, "L%d: Error stack not found\n", line);
 		exit(EXIT_FAILURE);

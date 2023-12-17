@@ -10,7 +10,7 @@ void processfile(FILE *file)
 	unsigned int line_number = 0;
 	char *line = NULL;
 	char *opcode = NULL;
-	char *arg = NULL;
+	/*char *arg = NULL;*/
 	size_t size = 0;
 	stack_t *stack = NULL;
 
@@ -18,29 +18,18 @@ void processfile(FILE *file)
 	{
 		line_number++;
 		opcode = strtok(line, " \n");
-		/*printf("opcode antes de:%s\n", opcode);*/
 		if (opcode == NULL || strchr(opcode, '#') != NULL)
 			continue;
 		if (strcmp(opcode, "push") == 0)
 		{
-			/*printf("opcode push:%s\n", opcode);*/
-			arg = strtok(NULL, " \n");
-			if (arg != NULL && valid_arg(arg))
-			{
-				push(&stack, line_number, arg);
-			}
-			else
-			{
-				fprintf(stderr, "L%d: usage: push integer\n", line_number);
-				free(opcode);
-				free_stack(&stack);
-				fclose(file);
-				exit(EXIT_FAILURE);
-			}
+			fprintf(stderr, "L%d: usage: push integer\n", line_number);
+			free(opcode);
+			free_stack(&stack);
+			fclose(file);
+			exit(EXIT_FAILURE);
 		}
 		else
 		{
-			/*printf("opcode difpush:%s\n", opcode);*/
 			get_opcode_func(opcode, &stack, line_number, file);
 		}
 	}
@@ -64,14 +53,8 @@ void get_opcode_func(char *opcode, stack_t **stack, unsigned int line, FILE *f)
 				   {"pall", pall},
 				   {NULL, NULL}};
 
-	/*(void)stack;*/
-	/*(void)line;*/
-	/*(void)opcode;*/
-	/*printf("opcode parametro:%s, linea:%d\n", opcode,line);*/
-
 	for ( ; i < 10; i++)
 	{
-		/*printf("opcode del struct:%s\n",opcodes[i].opcode);*/
 		if (strcmp(opcodes[i].opcode, opcode) == 0)
 		{
 			opcodes[i].f(stack, line);
@@ -104,26 +87,4 @@ int valid_arg(char *arg)
 			return (false);
 	}
 	return (true);
-}
-
-/**
- * free_stack - frees a list.
- * @head: head of list
- * Description: free list
- * Return: Nothing
- */
-void free_stack(stack_t **head)
-{
-
-	stack_t *temp = NULL;
-
-	if (head == NULL || *head == NULL)
-		return;
-
-	while (*head != NULL)
-	{
-		temp = (*head)->next;
-		free(*head);
-		(*head) = temp;
-	}
 }
