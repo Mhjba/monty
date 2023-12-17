@@ -83,7 +83,7 @@ void stack_init(stack_t **head)
  **/
 void free_all(void)
 {
-	stack_t *tmp1, *tmp2, **top = NULL;
+	stack_t *tmp1, *tmp2 = NULL;
 
 	tmp1 = *(globv.top);
 	while (tmp1 != NULL)
