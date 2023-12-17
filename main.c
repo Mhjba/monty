@@ -13,7 +13,7 @@ int main(int ac, char **av)
 {
 	stack_t *head;
 
-	stack_init(&head);
+	/*stack_init(&head);*/
 	if (ac != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
@@ -63,16 +63,7 @@ int file_reader(char *filename, stack_t **stack)
 	fclose(fp);
 	return (EXIT_SUCCESS);
 }
-/**
- * stack_init - function that initializes all the things.
- * @head: double pointer to top of stack.
- *
- * Return: No return.
- **/
-void stack_init(stack_t **head)
-{
-	*head = NULL;
-}
+
 
 /**
  * free_all - function that frees all malloc'ed memory.
