@@ -23,7 +23,7 @@ void _push(stack_t **stack, unsigned int line_number)
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	num = interpreter(opcode, line_number);
+	num = atoi(opcode);
 	element->n = num;
 	element->prev = NULL;
 	element->next = *stack;
