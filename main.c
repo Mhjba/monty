@@ -21,6 +21,7 @@ int main(int ac, char **av)
 	}
 	file_reader(av[1], &head);
 	exit(EXIT_SUCCESS);
+	return (0);
 }
 
 /**
