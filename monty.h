@@ -7,6 +7,8 @@
 #include <string.h>
 #include <stdbool.h>
 #include <ctype.h>
+#include <errno.h>
+#include <limits.h>
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -39,11 +41,43 @@ typedef struct instruction_s
 
 
 
-void free_stack(stack_t **head);
-void get_opcode_func(char *opcde, stack_t **stack, unsigned int line, FILE *f);
-void processfile(FILE *file);
-int  valid_arg(char *arg);
+/**
+ * struct global_vars - globally useful variables, all rolled into one
+ * @top: double pointer to top of stack
+ * @ops: double pointer to an instruction struct
+**/
+typedef struct global_vars
+{
+	stack_t **top;
+	instruction_t **ops;
+} glob_vars;
 
-void push(stack_t **stack, unsigned int line, char *arg);
-void pall(stack_t **stack, unsigned int line_number);
+extern glob_vars globv;
+
+/**
+ * struct var_s - struct to contain the main variables of the Monty interpreter
+ * @queue: flag to determine if in stack vs queue mode
+ * @stack_len: length of the stack
+ */
+typedef struct var_s
+{
+	int queue;
+	size_t stack_len;
+} var_t;
+
+var_t var;
+
+extern var_t var;
+
+#define STACK 0
+#define QUEUE 1
+
+void stack_init(stack_t **head);
+void free_all(void);
+int file_reader(char *filename, stack_t **stack);
+void get_po(stack_t **stack, char *op, unsigned int line_number);
+void _push(stack_t **stack, unsigned int line_number);
+void _pall(stack_t **stack, unsigned int line_number);
+int interpreter(char *num_string, unsigned int line_number);
+
 #endif

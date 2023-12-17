@@ -1,98 +1,33 @@
 #include "monty.h"
-/**
- * processfile - Read file line by line
- * @file: file to read
- * Description:  no return
- */
-void processfile(FILE *file)
-{
-
-	unsigned int line_number = 0;
-	char *line = NULL;
-	char *opcode = NULL;
-	char *arg = NULL;
-	size_t size = 0;
-	stack_t *stack = NULL;
-
-	while (getline(&line, &size, file) != -1)
-	{
-		line_number++;
-		opcode = strtok(line, " \n");
-		if (opcode == NULL || strchr(opcode, '#') != NULL)
-			continue;
-		if (strcmp(opcode, "push") == 0)
-		{
-			arg = strtok(NULL, " \n");
-			if (arg != NULL && valid_arg(arg))
-			{
-				push(&stack, line_number, arg);
-			}
-			else
-			{
-				fprintf(stderr, "L%d: usage: push integer\n", line_number);
-				free(opcode);
-				free_stack(&stack);
-				fclose(file);
-				exit(EXIT_FAILURE);
-			}
-		}
-		else
-		{
-			get_opcode_func(opcode, &stack, line_number, file);
-		}
-	}
-	free(opcode);
-	free_stack(&stack);
-}
 
 /**
- * get_opcode_func - process each command
- * @opcode: code to execute
- * @stack: structure to use
- * @line: number of line
- * @f: file
- * Description:  return 1 if is, 0 if not
- * Return: int
- */
-void get_opcode_func(char *opcode, stack_t **stack, unsigned int line, FILE *f)
+ * get_po - function that checks opcodes against valid opcodes.
+ * @stack: double pointer to head of stack.
+ * @op: pointer to opcode to check.
+ * @line_number: script line number.
+ *
+ * Return: No return
+ **/
+void get_po(stack_t **stack, char *op, unsigned int line_number)
 {
 	int i = 0;
-	instruction_t opcodes[] = {
-				   {"pall", pall},
-				   {NULL, NULL}};
+	instruction_t valid_opcodes[] = {
+		{"push", _push},
+		{"pall", _pall},
+		{NULL, NULL}
+	};
 
-	for ( ; i < 10; i++)
+	for (i = 0; valid_opcodes[i].opcode; i++)
 	{
-		if (strcmp(opcodes[i].opcode, opcode) == 0)
+		if (strcmp(op, valid_opcodes[i].opcode) == 0)
 		{
-			opcodes[i].f(stack, line);
+			valid_opcodes[i].f(stack, line_number);
 			return;
 		}
 	}
-	fprintf(stderr, "L%d: unknown instruction %s\n", line, opcode);
-	free(opcode);
-	free_stack(stack);
-	fclose(f);
-	exit(EXIT_FAILURE);
-}
-
-/**
- * valid_arg - valid push arguments
- * @arg: push argument
- * Description:  return 1 if is, 0 if not
- * Return: bool
- */
-int valid_arg(char *arg)
-{
-	int i = 0;
-
-	for ( ; arg[i]; i++)
+	if (strlen(op) != 0 && op[0] != '#')
 	{
-		if (arg[0] == '-')
-			continue;
-
-		if (isdigit(arg[i]) == 0)
-			return (false);
+		fprintf(stderr, "L%u: unknown instruction %s\n", line_number, op);
+		exit(EXIT_FAILURE);
 	}
-	return (true);
 }
