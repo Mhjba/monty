@@ -1,5 +1,4 @@
 #include "monty.h"
-#include <stdio.h>
 
 bus_t bus = {NULL, NULL, NULL, 0};
 /**
@@ -30,7 +29,7 @@ int main(int argc, char *argv[])
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
-	while (read_line)
+	while (read_line > 0)
 	{
 		read_line = getline(&content, &size, file);
 		bus.content = content;
