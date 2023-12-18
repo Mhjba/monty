@@ -1,53 +1,69 @@
 #include "monty.h"
 
 /**
- * _push - function that pushes an element to the stack.
- * @stack: double pointer to the head of stack.
- * @line_number: script line number.
- * Return: No return.
+ * push_func - entry point
+ * @stack: the stack
+ * @line_num: the line number
  */
-void _push(stack_t **stack, unsigned int line_number)
-{
-	stack_t *element = malloc(sizeof(stack_t));
-	char *opcode;
-	int num;
 
-	if (!element)
+void push_func(stack_t **stack, unsigned int line_num)
+{
+	int n;
+	int i = 0, flag = 0;
+
+	if (bus.arg)
 	{
-		fprintf(stderr, "Error: malloc failed\n");
+		if (bus.arg[0] == '-')
+		{
+			i++;
+		}
+
+		for (; bus.arg[i] != '\0'; i++)
+		{
+			if (bus.arg[i] > 57 || bus.arg[i] < 48)
+				flag = 1;
+		}
+		if (flag == 1)
+		{
+			fprintf(stderr, "L%d: usage: push integer\n", line_num);
+			fclose(bus.file);
+			free(bus.content);
+			free_stack(*stack);
+			exit(EXIT_FAILURE);
+		}
+	}
+	else
+	{
+		fprintf(stderr, "L%d: usage: push integer\n", line_num);
+		fclose(bus.file);
+		free(bus.content);
+		free_stack(*stack);
 		exit(EXIT_FAILURE);
 	}
-	opcode = strtok(NULL, "\n\t\r ");
-	if (opcode == NULL || stack == NULL)
-	{
-		fprintf(stderr, "L%u: usage: push integer\n", line_number);
-		exit(EXIT_FAILURE);
-	}
-	num = atoi(opcode);
-	element->n = num;
-	element->prev = NULL;
-	element->next = *stack;
-	if (element->next != NULL)
-		(element->next)->prev = element;
-	*stack = element;
+	n = atoi(bus.arg);
+	if (bus.life_cycle == 0)
+		addnode(stack, n);
+	else
+		addqueue(stack, n);
 }
-/**
- * _pall - function that print all values on the stack from the top.
- * @stack: double pointer to the head of stack
- * @line_number: script line number.
- *
- * If the stack is empty, don’t print anything.
- *
- * Return: No return.
- */
-void _pall(stack_t **stack, unsigned int line_number)
-{
-	stack_t *element = *stack;
 
-	(void)(line_number);
-	while (element != NULL)
+/**
+ * pall_func - entry point
+ * @stack: the stack
+ * @line_num: line number
+ */
+
+void pall_func(stack_t **stack, unsigned int line_num)
+{
+	stack_t *current = *stack;
+	(void)line_num;
+
+	if (current == NULL)
+		return;
+
+	while (current)
 	{
-		printf("%d\n", element->n);
-		element = element->next;
+		printf("%d\n", current->n);
+		current = current->next;
 	}
 }
