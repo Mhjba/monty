@@ -10,7 +10,7 @@ int main(int ac, char **av)
 {
 	stack_t *head;
 
-	stack_init(&head);
+	/*stack_init(&head);*/
 	if (ac != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
@@ -18,6 +18,7 @@ int main(int ac, char **av)
 	}
 	file_reader(av[1], &head);
 	exit(EXIT_SUCCESS);
+	return (0);
 }
 
 /**
@@ -66,9 +67,9 @@ int file_reader(char *filename, stack_t **stack)
  **/
 void free_all(void)
 {
-	stack_t *tmp1, *tmp2 = NULL;
+	stack_t *tmp1, *tmp2, **top = NULL;
 
-	tmp1 = *(globv.top);
+	tmp1 = *(top);
 	while (tmp1 != NULL)
 	{
 		tmp2 = tmp1->next;
@@ -76,16 +77,4 @@ void free_all(void)
 		tmp1 = tmp2;
 	}
 }
-/**
- * stack_init - function that initializes all the things.
- * @stack: double pointer to top of stack.
- *
- * Return: No return.
- **/
-void stack_init(stack_t **stack)
-{
-	int top;
 
-	stack->top = -1;
-
-}

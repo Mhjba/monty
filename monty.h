@@ -47,7 +47,7 @@ typedef struct instruction_s
  * struct global_vars - globally useful variables, all rolled into one
  * @top: double pointer to top of stack
  * @ops: double pointer to an instruction struct
-**/
+
 typedef struct global_vars
 {
 	stack_t **top;
@@ -55,10 +55,10 @@ typedef struct global_vars
 } glob_vars;
 
 extern glob_vars globv;
+*/
 
 
-
-void stack_init(stack_t **stack);
+void stack_init(void);
 void free_all(void);
 int file_reader(char *filename, stack_t **stack);
 void get_po(stack_t **stack, char *op, unsigned int line_number);
