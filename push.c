@@ -11,8 +11,6 @@ void push_func(stack_t **stack, unsigned int line_num)
 	int n;
 	int i = 0, flag = 0;
 
-	if (bus.arg)
-	{
 		if (bus.arg[0] == '-')
 		{
 			i++;
@@ -31,8 +29,6 @@ void push_func(stack_t **stack, unsigned int line_num)
 			free_stack(*stack);
 			exit(EXIT_FAILURE);
 		}
-	}
-
 	n = atoi(bus.arg);
 	if (bus.life_cycle == 0)
 		addnode(stack, n);

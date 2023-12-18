@@ -61,6 +61,8 @@ void pall_func(stack_t **stack, unsigned int line_num);
 void free_stack(stack_t *head);
 void addnode(stack_t **head, int n);
 void addqueue(stack_t **head, int n);
+void print_stack(stack_t **stack, unsigned int line_number);
+void add_to_stack(stack_t **new_node, __attribute__((unused))unsigned int ln);
 void add_to_queue(stack_t **new_node, __attribute__((unused))unsigned int ln);
 int execute(char *content, stack_t **stack, unsigned int counter, FILE *file);
 
