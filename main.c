@@ -80,11 +80,10 @@ void free_all(void)
 /**
  * stack_init - function that initializes all the things.
  * @head: double pointer to top of stack.
- *
+ * @global_vars: global_vars
  * Return: No return.
  **/
-void stack_init(stack_t **stack)
+void stack_init(stack_t **head)
 {
-	*stack = NULL;
-
+	*head = NULL;
 }
