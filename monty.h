@@ -58,7 +58,7 @@ extern glob_vars globv;
 */
 
 
-void stack_init(void);
+void stack_init(stack_t **stack);
 void free_all(void);
 int file_reader(char *filename, stack_t **stack);
 void get_po(stack_t **stack, char *op, unsigned int line_number);

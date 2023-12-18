@@ -10,7 +10,7 @@ int main(int ac, char **av)
 {
 	stack_t *head;
 
-	/*stack_init(&head);*/
+	stack_init(&head);
 	if (ac != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
@@ -77,4 +77,14 @@ void free_all(void)
 		tmp1 = tmp2;
 	}
 }
+/**
+ * stack_init - function that initializes all the things.
+ * @head: double pointer to top of stack.
+ *
+ * Return: No return.
+ **/
+void stack_init(stack_t **stack)
+{
+	*stack = NULL;
 
+}
