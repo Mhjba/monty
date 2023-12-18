@@ -13,11 +13,6 @@ void push_func(stack_t **stack, unsigned int line_num)
 
 	if (bus.arg)
 	{
-		if (bus.arg[0] == '-')
-		{
-			i++;
-		}
-
 		for (; bus.arg[i] != '\0'; i++)
 		{
 			if (bus.arg[i] > 57 || bus.arg[i] < 48)
