@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
-	while ((read_line = getline(&content, &size, file)))
+	while ((read_line = getline(&content, &size, file) != 1))
 	{
 		content = NULL;
 		bus.content = content;
