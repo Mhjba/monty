@@ -42,8 +42,6 @@ void push_func(stack_t **stack, unsigned int line_num)
 	}
 	n = atoi(bus.arg);
 	if (bus.life_cycle == 0)
-		addnode(stack, n);
-	else
 		addqueue(stack, n);
 }
 
