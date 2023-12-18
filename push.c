@@ -13,6 +13,11 @@ void push_func(stack_t **stack, unsigned int line_num)
 
 	if (bus.arg)
 	{
+		if (bus.arg[0] == '-')
+		{
+			i++;
+		}
+		n = atoi(bus.arg);
 		for (; bus.arg[i] != '\0'; i++)
 		{
 			if (bus.arg[i] > 57 || bus.arg[i] < 48)
@@ -28,12 +33,9 @@ void push_func(stack_t **stack, unsigned int line_num)
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_num);
 		exit(EXIT_FAILURE);
-	}
-	n = atoi(bus.arg);
-	if (bus.life_cycle == 0)
 		addnode(stack, n);
-	else
 		addqueue(stack, n);
+	}
 }
 
 /**
