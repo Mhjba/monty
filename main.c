@@ -1,4 +1,5 @@
 #include "monty.h"
+glob_vars globv;
 
 /**
  * main - check the code.
@@ -86,4 +87,5 @@ void free_all(void)
 void stack_init(stack_t **head)
 {
 	*head = NULL;
+	globv.top = head;
 }
