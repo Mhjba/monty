@@ -16,7 +16,6 @@ int main(int argc, char *argv[])
 	stack_t *stack = NULL;
 	unsigned int counter = 0;
 
-	content = NULL;
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
@@ -31,6 +30,7 @@ int main(int argc, char *argv[])
 	}
 	while (read_line > 0)
 	{
+		content = NULL;
 		read_line = getline(&content, &size, file);
 		bus.content = content;
 		counter++;
