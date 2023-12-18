@@ -19,6 +19,10 @@ void push_func(stack_t **stack, unsigned int line_num)
 		}
 
 		for (; bus.arg[i] != '\0'; i++)
+		{
+			if (bus.arg[i] > '9' || bus.arg[i] < '0')
+				flag = 1;
+		}
 		if (flag == 1)
 		{
 			fprintf(stderr, "L%d: usage: push integer\n", line_num);
