@@ -60,6 +60,7 @@ void _push(stack_t **stack, unsigned int line_number);
 void _pall(stack_t **stack, unsigned int line_number);
 void _pint(stack_t **stack, unsigned int line_number);
 void _pop(stack_t **stack, unsigned int line_number);
+void _swap(stack_t **stack, unsigned int line_number);
 void free_stack(stack_t *stack);
 void node_add(stack_t **stack, unsigned int line_number);
 void queue_add(stack_t **stack, unsigned int line_number);
