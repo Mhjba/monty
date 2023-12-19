@@ -9,12 +9,12 @@ head_t var = {NULL, NULL, NULL, 0};
 */
 int main(int argc, char *argv[])
 {
-	char *content;
+	unsigned int i = 0;
 	FILE *file;
-	size_t size = 0;
-	ssize_t read_line = 1;
+	size_t len = 0;
+	ssize_t read;
 	stack_t *stack = NULL;
-	unsigned int counter = 0;
+	char *line;
 
 	if (argc != 2)
 	{
@@ -22,23 +22,23 @@ int main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 	file = fopen(argv[1], "r");
-	var.file = file;
 	if (!file)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
-	while (read_line > 0)
+	var.file = file;
+	while (read > 0)
 	{
-		content = NULL;
-		read_line = getline(&content, &size, file);
-		counter++;
-		var.mp = content;
-		if (read_line > 0)
+		line = NULL;
+		read = getline(&line, &len, file);
+		i++;
+		var.op = line;
+		if (read > 0)
 		{
-			execute(content, &stack, counter, file);
+			op_fun(line, &stack, i);
 		}
-		free(content);
+		free(line);
 	}
 	free_stack(stack);
 	fclose(file);
@@ -47,18 +47,17 @@ return (0);
 
 /**
 * free_stack - entry point
-* @head: head of the stack
+* @stack: head of the stack
 */
-void free_stack(stack_t *head)
+void free_stack(stack_t *stack)
 {
-	stack_t *current;
+	stack_t *new;
 
-	current = head;
-	while (head)
+	new = stack;
+	while (stack)
 	{
-		current = head->next;
-		free(head);
-		head = current;
+		new = stack->next;
+		free(stack);
+		stack = new;
 	}
 }
-

@@ -58,11 +58,11 @@ extern head_t var;
 
 void _push(stack_t **stack, unsigned int line_number);
 void _pall(stack_t **stack, unsigned int line_number);
-void free_stack(stack_t *head);
+void free_stack(stack_t *stack);
 void node_add(stack_t **head, int n);
 void queue_add(stack_t **head, int n);
 void print_stack(stack_t **stack, unsigned int line_number);
-int execute(char *content, stack_t **stack, unsigned int counter, FILE *file);
+int op_fun(char *ptr, stack_t **stack, unsigned int line_number);
 
 
 #endif
