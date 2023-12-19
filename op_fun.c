@@ -3,7 +3,6 @@
 * op_fun - executes the opcode
 * @stack: head linked list - stack
 * @ptr: pointer
-* @file: poiner to monty file
 * @line_number: line_number
 * Return: no return
 */
