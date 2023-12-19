@@ -41,28 +41,29 @@ typedef struct instruction_s
 
 /**
  * struct t_data - entry point
- * @arg: value
+ * @op: value
  * @file: pointer to monty file
- * @content: line content
- * @life_cycle: flag change stack <-> queue
+ * @mp: line content
+ * @num: flag change stack <-> queue
  */
-typedef struct bus_s
+typedef struct head_t
 {
-	char *arg;
+	char *op;
 	FILE *file;
-	char *content;
-	int life_cycle;
-}  bus_t;
-extern bus_t bus;
+	char *mp;
+	int num;
+}  head_t;
+extern head_t var;
 
 
-void push_func(stack_t **stack, unsigned int line_num);
-void pall_func(stack_t **stack, unsigned int line_num);
+void _push(stack_t **stack, unsigned int line_number);
+void _pall(stack_t **stack, unsigned int line_number);
 void free_stack(stack_t *head);
-void addnode(stack_t **head, int n);
-void addqueue(stack_t **head, int n);
+void node_add(stack_t **head, int n);
+void queue_add(stack_t **head, int n);
 void print_stack(stack_t **stack, unsigned int line_number);
 int execute(char *content, stack_t **stack, unsigned int counter, FILE *file);
+
 
 #endif
 

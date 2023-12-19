@@ -1,61 +1,61 @@
 #include "monty.h"
 
 /**
- * push_func - entry point
+ * _push - entry point
  * @stack: the stack
- * @line_num: the line number
+ * @line_number: the line number
  */
 
-void push_func(stack_t **stack, unsigned int line_num)
+void _push(stack_t **stack, unsigned int line_number)
 {
 	int n;
 	int i = 0, flag = 0;
 
-	if (bus.arg)
+	if (var.mp)
 	{
-		if (bus.arg[0] == '-')
+		if (var.mp[0] == '-')
 		{
 			i++;
 		}
 
-		for (; bus.arg[i] != '\0'; i++)
+		for (; var.mp[i] != '\0'; i++)
 		{
-			if (bus.arg[i] > '9' || bus.arg[i] < '0')
+			if (var.mp[i] > '9' || var.mp[i] < '0')
 				flag = 1;
 		}
 		if (flag == 1)
 		{
-			fprintf(stderr, "L%d: usage: push integer\n", line_num);
+			fprintf(stderr, "L%d: usage: push integer\n", line_number);
 			exit(EXIT_FAILURE);
 		}
 	}
 	else
 	{
-		fprintf(stderr, "L%d: usage: push integer\n", line_num);
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	n = atoi(bus.arg);
-	if (bus.life_cycle == 0)
-		addnode(stack, n);
+	n = atoi(var.mp);
+	if (var.num == 0)
+		node_add(stack, n);
 	else
-		addqueue(stack, n);
+		queue_add(stack, n);
 }
 
 /**
- * pall_func - entry point
+ * _pall - entry point
  * @stack: the stack
- * @line_num: line number
+ * @line_number: line number
  */
 
-void pall_func(stack_t **stack, unsigned int line_num)
+void _pall(stack_t **stack, unsigned int line_number)
 {
-	stack_t *current = *stack;
-	(void)line_num;
+	stack_t *new = *stack;
+	(void)line_number;
 
-	while (current)
+	while (new)
 	{
-		printf("%d\n", current->n);
-		current = current->next;
+		printf("%d\n", new->n);
+		new = new->next;
 	}
 }
 
