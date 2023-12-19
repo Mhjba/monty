@@ -16,6 +16,7 @@ int op_fun(char *ptr, stack_t **stack, unsigned int line_number)
 		{"push", _push},
 		{"pall", _pall},
 		{"pint", _pint},
+		{"pop", _pop},
 		{NULL, NULL}};
 
 	opc = strtok(ptr, " \n\t");
