@@ -58,3 +58,4 @@ void pall_func(stack_t **stack, unsigned int line_num)
 		current = current->next;
 	}
 }
+

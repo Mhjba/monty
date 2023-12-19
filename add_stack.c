@@ -1,22 +1,5 @@
 #include "monty.h"
 /**
-* free_stack - entry point
-* @head: head of the stack
-*/
-void free_stack(stack_t *head)
-{
-	stack_t *current;
-
-	current = head;
-	while (head)
-	{
-		current = head->next;
-		free(head);
-		head = current;
-	}
-}
-
-/**
  * addnode - entry point
  * @head: head of the stack
  * @n: new_value
@@ -80,3 +63,4 @@ void addqueue(stack_t **head, int n)
 		new_node->prev = current;
 	}
 }
+

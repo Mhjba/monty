@@ -44,3 +44,20 @@ int main(int argc, char *argv[])
 	fclose(file);
 return (0);
 }
+
+/**
+* free_stack - entry point
+* @head: head of the stack
+*/
+void free_stack(stack_t *head)
+{
+	stack_t *current;
+
+	current = head;
+	while (head)
+	{
+		current = head->next;
+		free(head);
+		head = current;
+	}
+}
