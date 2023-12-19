@@ -1,66 +1,63 @@
 #include "monty.h"
 /**
  * node_add - entry point
- * @head: head of the stack
- * @n: new_value
+ * @stack: head of the stack
+ * @line_number: line_number
  * Return: no return
 */
-void node_add(stack_t **head, int n)
+void node_add(stack_t **stack, unsigned int line_number)
 {
 
-	stack_t *new_node;
+	stack_t *new;
+	stack_t *head = *stack;
 
-	stack_t *current = *head;
-
-	new_node = malloc(sizeof(stack_t));
-	if (new_node == NULL)
+	new = malloc(sizeof(stack_t));
+	if (new == NULL)
 	{
 		printf("Error\n");
 		exit(0);
 	}
 
-	if (current)
-		current->prev = new_node;
-	new_node->n = n;
-	new_node->next = *head;
-	new_node->prev = NULL;
-	*head = new_node;
+	if (head)
+		head->prev = new;
+	new->n = line_number;
+	new->next = *stack;
+	new->prev = NULL;
+	*stack = new;
 }
 
 
 /**
  * queue_add - entry point
- * @n: new_value
- * @head: head of the stack
+ * @line_number: line_number
+ * @stack: head of the stack
  * Return: no return
 */
-void queue_add(stack_t **head, int n)
+void queue_add(stack_t **stack, unsigned int line_number)
 {
-	stack_t *new_node;
+	stack_t *new;
+	stack_t *head = *stack;
 
-	stack_t *current = *head;
-
-	new_node = malloc(sizeof(stack_t));
-	if (new_node == NULL)
+	new = malloc(sizeof(stack_t));
+	if (new == NULL)
 	{
 		printf("Error\n");
 	}
-	new_node->n = n;
-	new_node->next = NULL;
-	if (current)
+	new->n = line_number;
+	new->next = NULL;
+	if (head)
 	{
-		while (current->next)
-			current = current->next;
+		while (head->next)
+			head = head->next;
 	}
-	if (!current)
+	if (!head)
 	{
-		*head = new_node;
-		new_node->prev = NULL;
+		*stack = new;
+		new->prev = NULL;
 	}
 	else
 	{
-		current->next = new_node;
-		new_node->prev = current;
+		head->next = new;
+		new->prev = head;
 	}
 }
-

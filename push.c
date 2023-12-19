@@ -8,8 +8,8 @@
 
 void _push(stack_t **stack, unsigned int line_number)
 {
-	int n;
-	int i = 0, flag = 0;
+	int node;
+	int i = 0, cmd = 0;
 
 	if (var.mp)
 	{
@@ -21,9 +21,9 @@ void _push(stack_t **stack, unsigned int line_number)
 		for (; var.mp[i] != '\0'; i++)
 		{
 			if (var.mp[i] > '9' || var.mp[i] < '0')
-				flag = 1;
+				cmd = 1;
 		}
-		if (flag == 1)
+		if (cmd == 1)
 		{
 			fprintf(stderr, "L%d: usage: push integer\n", line_number);
 			exit(EXIT_FAILURE);
@@ -34,11 +34,11 @@ void _push(stack_t **stack, unsigned int line_number)
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	n = atoi(var.mp);
+	node = atoi(var.mp);
 	if (var.num == 0)
-		node_add(stack, n);
+		node_add(stack, node);
 	else
-		queue_add(stack, n);
+		queue_add(stack, node);
 }
 
 /**
