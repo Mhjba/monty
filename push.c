@@ -1,9 +1,10 @@
 #include "monty.h"
 
 /**
- * _push - entry point
- * @stack: the stack
- * @line_number: the line number
+ * _push - pushes an element to the stack.
+ * @stack: pointer of the stack.
+ * @line_number: line number.
+ * Return: void.
  */
 
 void _push(stack_t **stack, unsigned int line_number)
@@ -42,9 +43,10 @@ void _push(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * _pall - entry point
- * @stack: the stack
- * @line_number: line number
+ * _pall - prints all the element.
+ * @stack: ponter to the stack.
+ * @line_number: line number.
+ * Return: void.
  */
 
 void _pall(stack_t **stack, unsigned int line_number)
@@ -54,8 +56,8 @@ void _pall(stack_t **stack, unsigned int line_number)
 
 	while (new)
 	{
-		printf("%d\n", new->n);
 		new = new->next;
+		printf("%d\n", new->n);
 	}
 }
 

@@ -1,9 +1,9 @@
 #include "monty.h"
 /**
- * node_add - entry point
- * @stack: head of the stack
- * @line_number: line_number
- * Return: no return
+ * node_add - adds a node to the stack.
+ * @stack: ponter to the stack.
+ * @line_number: line_number.
+ * Return: void.
 */
 void node_add(stack_t **stack, unsigned int line_number)
 {
@@ -28,10 +28,10 @@ void node_add(stack_t **stack, unsigned int line_number)
 
 
 /**
- * queue_add - entry point
- * @line_number: line_number
- * @stack: head of the stack
- * Return: no return
+ * queue_add - adds a node to the stack.
+ * @stack: pointer to the stack.
+ * @line_number: line_number.
+ * Return: void.
 */
 void queue_add(stack_t **stack, unsigned int line_number)
 {

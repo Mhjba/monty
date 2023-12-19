@@ -40,16 +40,16 @@ typedef struct instruction_s
 } instruction_t;
 
 /**
- * struct t_data - entry point
- * @op: value
- * @file: pointer to monty file
- * @mp: line content
- * @num: flag change stack <-> queue
+ * struct head_t - opcode and the function.
+ * @file: the opcode.
+ * @op: value.
+ * @mp: ponter.
+ * @num: function to handle the opcode.
  */
 typedef struct head_t
 {
-	char *op;
 	FILE *file;
+	char *op;
 	char *mp;
 	int num;
 }  head_t;

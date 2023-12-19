@@ -1,10 +1,10 @@
 #include "monty.h"
 /**
-* op_fun - executes the opcode
-* @stack: head linked list - stack
-* @ptr: pointer
-* @line_number: line_number
-* Return: no return
+* op_fun -function for the opcode.
+* @ptr: pointer.
+* @stack: ponter of the stack.
+* @line_number: line_number.
+* Return: integer.
 */
 
 int op_fun(char *ptr, stack_t **stack, unsigned int line_number)
