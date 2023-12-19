@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
 	unsigned int i = 0;
 	FILE *file;
 	size_t len = 0;
-	ssize_t read;
+	ssize_t element;
 	stack_t *stack = NULL;
 	char *line;
 
@@ -28,13 +28,13 @@ int main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 	var.file = file;
-	while (read > 0)
+	while (element > 0)
 	{
 		line = NULL;
-		read = getline(&line, &len, file);
+		element = getline(&line, &len, file);
 		i++;
 		var.op = line;
-		if (read > 0)
+		if (element > 0)
 		{
 			op_fun(line, &stack, i);
 		}
