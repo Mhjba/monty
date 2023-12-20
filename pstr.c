@@ -8,24 +8,21 @@
  */
 void _pstr(stack_t **stack, unsigned int line_number)
 {
-	int ascii;
-	stack_t *new;
+	stack_t *new = *stack;
 
 	(void)(line_number);
-	if (stack == NULL || *stack == NULL)
+	if (!(*stack))
 	{
 		printf("\n");
 		return;
 	}
-
-	new = *stack;
-	while (new != NULL)
+	while (new)
 	{
-		ascii = new->n;
-		if (ascii <= 0 || ascii > 0)
+		if (isascii(new->n) && new->n != 0)
+			putchar(new->n);
+		else
 			break;
-		printf("%c", ascii);
 		new = new->next;
 	}
-	printf("\n");
+	putchar('\n');
 }
