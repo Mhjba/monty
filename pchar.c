@@ -10,16 +10,15 @@ void _pchar(stack_t **stack, unsigned int line_number)
 {
 	int new;
 
-	if (*stack == NULL)
+	if (!(*stack))
 	{
-		fprintf(stderr, "L%u: can't pchar, value out of range\n", line_number);
+		fprintf(stderr, "L%u: can't pchar, stack empty\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-
 	new = (*stack)->n;
 	if (!isascii(new))
 	{
-		fprintf(stderr, "L%u: can't pchar, stack empty\n", line_number);
+		fprintf(stderr, "L%u: can't pchar, value out of range\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 	printf("%c\n", new);
