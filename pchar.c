@@ -17,7 +17,7 @@ void _pchar(stack_t **stack, unsigned int line_number)
 	}
 
 	new = (*stack)->n;
-	if (new < 0 || new > 127)
+	if (!isascii(new))
 	{
 		fprintf(stderr, "L%u: can't pchar, stack empty\n", line_number);
 		exit(EXIT_FAILURE);
