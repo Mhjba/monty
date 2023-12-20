@@ -18,6 +18,12 @@ int op_fun(char *ptr, stack_t **stack, unsigned int line_number)
 		{"pint", _pint},
 		{"pop", _pop},
 		{"swap", _swap},
+		{"add", _add},
+		{"nop", _nop},
+		{"sub", _sub},
+		{"div", _div},
+		{"mul", _mul},
+		{"mod", _mod},
 		{NULL, NULL}};
 
 	opc = strtok(ptr, " \n\t");
