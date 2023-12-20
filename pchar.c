@@ -10,7 +10,7 @@ void _pchar(stack_t **stack, unsigned int line_number)
 {
 	int new;
 
-	if (stack == NULL || *stack == NULL)
+	if (*stack == NULL)
 	{
 		fprintf(stderr, "L%u: can't pchar, value out of range\n", line_number);
 		exit(EXIT_FAILURE);
