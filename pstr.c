@@ -11,7 +11,7 @@ void _pstr(stack_t **stack, unsigned int line_number)
 	stack_t *new = *stack;
 
 	(void)(line_number);
-	if (!(*stack))
+	if (stack == NULL || *stack == NULL)
 	{
 		printf("\n");
 		return;
